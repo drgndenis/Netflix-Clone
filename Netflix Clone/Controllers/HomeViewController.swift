@@ -25,7 +25,8 @@ class HomeViewController: UIViewController {
         homeFeedTable.dataSource = self
         
         // tableHeaderView'a gorunum olusturma
-        homeFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        let heroView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        homeFeedTable.tableHeaderView = heroView
     }
     
     // Cerceve verme

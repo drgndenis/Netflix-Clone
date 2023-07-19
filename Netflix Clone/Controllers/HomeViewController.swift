@@ -30,12 +30,25 @@ class HomeViewController: UIViewController {
         // tableHeaderView'a gorunum olusturma
         let heroView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = heroView
+        
+        getTrendingMovies()
     }
     
     // Cerceve verme
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds // Ekranı komple kaplamasi
+    }
+    
+    private func getTrendingMovies() {
+        APICaller.shared.getTrendingMovies { results in
+            switch results {
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     private func configureNavbar() {

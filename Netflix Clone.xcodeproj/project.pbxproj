@@ -18,6 +18,9 @@
 		E21604AB2A6079E400791C24 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21604AA2A6079E400791C24 /* UpcomingViewController.swift */; };
 		E21604AD2A607A3200791C24 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21604AC2A607A3200791C24 /* SearchViewController.swift */; };
 		E21604AF2A607A5600791C24 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21604AE2A607A5600791C24 /* DownloadsViewController.swift */; };
+		E2C9B2B22A6832C400665F06 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9B2B12A6832C400665F06 /* APICaller.swift */; };
+		E2C9B2B42A6832E300665F06 /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9B2B32A6832E300665F06 /* Contents.swift */; };
+		E2C9B2B62A68332400665F06 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9B2B52A68332400665F06 /* Title.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		E21604AA2A6079E400791C24 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		E21604AC2A607A3200791C24 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E21604AE2A607A5600791C24 /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
+		E2C9B2B12A6832C400665F06 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		E2C9B2B32A6832E300665F06 /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
+		E2C9B2B52A68332400665F06 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,13 +69,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		E2002CBF2A61B79600625AD6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		E2002CC02A61B79C00625AD6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +95,9 @@
 		E21604922A606FD900791C24 /* Netflix Clone */ = {
 			isa = PBXGroup;
 			children = (
+				E2C9B2B02A6832A700665F06 /* Services */,
 				E2002CC02A61B79C00625AD6 /* Resources */,
-				E2002CBF2A61B79600625AD6 /* Models */,
+				E2C9B2AF2A68328900665F06 /* Models */,
 				E2002CBE2A61B78F00625AD6 /* Views */,
 				E2002CBD2A61B78600625AD6 /* View Models */,
 				E21604A72A6079A400791C24 /* Controllers */,
@@ -120,6 +120,23 @@
 				E21604AE2A607A5600791C24 /* DownloadsViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E2C9B2AF2A68328900665F06 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2C9B2B52A68332400665F06 /* Title.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E2C9B2B02A6832A700665F06 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E2C9B2B12A6832C400665F06 /* APICaller.swift */,
+				E2C9B2B32A6832E300665F06 /* Contents.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,7 +212,10 @@
 				E21604AD2A607A3200791C24 /* SearchViewController.swift in Sources */,
 				E21604982A606FD900791C24 /* MainTabBarViewController.swift in Sources */,
 				E2002CC22A61C8DF00625AD6 /* CollectionViewTableViewCell.swift in Sources */,
+				E2C9B2B22A6832C400665F06 /* APICaller.swift in Sources */,
+				E2C9B2B62A68332400665F06 /* Title.swift in Sources */,
 				E2002CC42A63059700625AD6 /* HeroHeaderUIView.swift in Sources */,
+				E2C9B2B42A6832E300665F06 /* Contents.swift in Sources */,
 				E21604AF2A607A5600791C24 /* DownloadsViewController.swift in Sources */,
 				E21604942A606FD900791C24 /* AppDelegate.swift in Sources */,
 				E21604962A606FD900791C24 /* SceneDelegate.swift in Sources */,

@@ -10,9 +10,6 @@ import Foundation
 enum APIError: Error {
     case failedToGetData
 }
-// JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-// completion(.success(results.results))
-// completion(.failure(APIError.failedToGetData))
 
 class APICaller {
     static let shared = APICaller()

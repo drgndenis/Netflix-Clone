@@ -7,15 +7,24 @@
 
 import UIKit
 
+enum Sections: Int {
+    case TrendingMovies = 0
+    case TrendingTv = 1
+    case Popular = 2
+    case Upcoming = 3
+    case TopRated = 4
+}
+
 class HomeViewController: UIViewController {
     
+    // URLs
     private let trendingMoviesURL = "\(Constants.baseURL)/3/trending/movie/day?api_key=\(Constants.API_KEY)"
     private let trendingTvURL = "\(Constants.baseURL)/3/trending/tv/day?api_key=\(Constants.API_KEY)"
     private let popularURL = "\(Constants.baseURL)/3/movie/popular?api_key=\(Constants.API_KEY)"
     private let upcomingMoviesURL = "\(Constants.baseURL)/3/movie/upcoming?api_key=\(Constants.API_KEY)"
     private let topRatedURL = "\(Constants.baseURL)/3/tv/top_rated?api_key=\(Constants.API_KEY)"
     
-    let sectionTitles: [String] = ["Trending Movies", "Trending TV", "Popular" , "Upcoming Movies", "Top Rated"]
+    let sectionTitles: [String] = ["Trendıng Movıes", "Trendıng TV", "Popular" , "Upcomıng Movıes", "Top Rated"]
     
     // TableView olusturulmasi
     private let homeFeedTable : UITableView = {
@@ -36,12 +45,6 @@ class HomeViewController: UIViewController {
         // tableHeaderView'a gorunum olusturma
         let heroView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = heroView
-        
-        fetchAndPrintData(url: URL(string: trendingMoviesURL))
-//        fetchAndPrintData(url: URL(string: trendingTvURL))
-//        fetchAndPrintData(url: URL(string: popularURL))
-//        fetchAndPrintData(url: URL(string: upcomingMoviesURL))
-//        fetchAndPrintData(url: URL(string: topRatedURL))
     }
     
     // Cerceve verme
@@ -50,13 +53,13 @@ class HomeViewController: UIViewController {
         homeFeedTable.frame = view.bounds // Ekranı komple kaplamasi
     }
     
-    private func fetchAndPrintData(url: URL?) {
+    private func fetchAndPrintData(url: URL?, cell: CollectionViewTableViewCell) {
         APICaller.shared.getData(url: url) { results in
             switch results {
-            case .success(let data):
-                print(data)
+            case .success(let titles):
+                cell.configure(with: titles)
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }
@@ -92,6 +95,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        // API ile fotograflarin cekilip gerekli satirlara gelmesi
+        switch indexPath.section {
+        case Sections.TrendingMovies.rawValue:
+            fetchAndPrintData(url: URL(string: trendingMoviesURL), cell: cell)
+        case Sections.TrendingTv.rawValue:
+            fetchAndPrintData(url: URL(string: trendingTvURL), cell: cell)
+        case Sections.Popular.rawValue:
+            fetchAndPrintData(url: URL(string: popularURL), cell: cell)
+        case Sections.Upcoming.rawValue:
+            fetchAndPrintData(url: URL(string: upcomingMoviesURL), cell: cell)
+        case Sections.TopRated.rawValue:
+            fetchAndPrintData(url: URL(string: topRatedURL), cell: cell)
+        default:
+            return UITableViewCell()
+        }
         return cell
     }
     

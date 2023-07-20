@@ -9,7 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sectionTitles: [String] = ["TRENDING MOVIES", "POPULAR" ,"TRENDING TV", "UPCOMING MOVIES", "TOP RATED"]
+    private let trendingMoviesURL = "\(Constants.baseURL)/3/trending/movie/day?api_key=\(Constants.API_KEY)"
+    private let trendingTvURL = "\(Constants.baseURL)/3/trending/tv/day?api_key=\(Constants.API_KEY)"
+    private let popularURL = "\(Constants.baseURL)/3/movie/popular?api_key=\(Constants.API_KEY)"
+    private let upcomingMoviesURL = "\(Constants.baseURL)/3/movie/upcoming?api_key=\(Constants.API_KEY)"
+    private let topRatedURL = "\(Constants.baseURL)/3/tv/top_rated?api_key=\(Constants.API_KEY)"
+    
+    let sectionTitles: [String] = ["Trending Movies", "Trending TV", "Popular" , "Upcoming Movies", "Top Rated"]
     
     // TableView olusturulmasi
     private let homeFeedTable : UITableView = {
@@ -31,7 +37,11 @@ class HomeViewController: UIViewController {
         let heroView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = heroView
         
-        getTrendingMovies()
+        fetchAndPrintData(url: URL(string: trendingMoviesURL))
+//        fetchAndPrintData(url: URL(string: trendingTvURL))
+//        fetchAndPrintData(url: URL(string: popularURL))
+//        fetchAndPrintData(url: URL(string: upcomingMoviesURL))
+//        fetchAndPrintData(url: URL(string: topRatedURL))
     }
     
     // Cerceve verme
@@ -40,11 +50,11 @@ class HomeViewController: UIViewController {
         homeFeedTable.frame = view.bounds // Ekranı komple kaplamasi
     }
     
-    private func getTrendingMovies() {
-        APICaller.shared.getTrendingMovies { results in
+    private func fetchAndPrintData(url: URL?) {
+        APICaller.shared.getData(url: url) { results in
             switch results {
-            case .success(let movies):
-                print(movies)
+            case .success(let data):
+                print(data)
             case .failure(let error):
                 print(error)
             }
@@ -102,6 +112,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
     
     // Asagiya kaydirildiginda navigation sabit kalması yerine hareket etmesi

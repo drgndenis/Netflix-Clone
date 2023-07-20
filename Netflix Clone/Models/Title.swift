@@ -12,13 +12,26 @@ struct TrendingTitleResponse: Codable {
 }
 
 struct Title: Codable {
+    
     let id: Int
-    let media_type: String?
-    let original_language: String?
-    let original_title: String?
-    let poster_path: String?
+    let originalLanguage: String?
+    let originalTitle: String?
     let overview: String?
-    let vote_count: Int
-    let release_date: String?
-    let vote_average: Double
+    let posterPath: String?
+    let mediaType: String?
+    let releaseDate: String?
+    let voteAverage: Double
+    let voteCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+            case id
+            case originalLanguage = "original_language"
+            case originalTitle = "original_title"
+            case overview
+            case posterPath = "poster_path"
+            case mediaType = "media_type"
+            case releaseDate = "release_date"
+            case voteAverage = "vote_average"
+            case voteCount = "vote_count"
+    }
 }

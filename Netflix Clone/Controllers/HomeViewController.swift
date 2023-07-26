@@ -64,6 +64,7 @@ class HomeViewController: UIViewController {
         }
     }
 
+    //MARK: Navbar'a logo ve buton ekleme
     private func configureNavbar() {
         let logoImage = UIImage(named: "netflixLogo")?.withRenderingMode(.alwaysOriginal)
         let logoBarButtonItem = UIBarButtonItem(image: logoImage, style: .done, target: self, action: nil)

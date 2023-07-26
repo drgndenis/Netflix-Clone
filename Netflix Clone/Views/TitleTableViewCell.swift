@@ -8,9 +8,16 @@
 import UIKit
 
 class TitleTableViewCell: UITableViewCell {
-    
-    
     static let identifier = "TitleTableViewCell"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(titlesPosterUIImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(playTitleButton)
+
+        applyConstraints()
+    }
     
     private let playTitleButton: UIButton = {
         let button = UIButton()
@@ -34,16 +41,6 @@ class TitleTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(titlesPosterUIImageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(playTitleButton)
-
-        applyConstraints()
-
-    }
-
     private func applyConstraints() {
         let titlesPosterUIImageViewConstraints = [
             titlesPosterUIImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -56,7 +53,6 @@ class TitleTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: titlesPosterUIImageView.trailingAnchor, constant: 20),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ]
-
 
         let playTitleButtonConstraints = [
             playTitleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),

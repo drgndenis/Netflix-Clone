@@ -8,8 +8,8 @@
 import UIKit
 
 class UpcomingViewController: UIViewController {
+    
     private let upcomingMoviesURL = "\(Constants.baseURL)/3/movie/upcoming?api_key=\(Constants.API_KEY)"
-
     private var titles: [Title] = [Title]()
 
     private let upcomingTable: UITableView = {
@@ -40,6 +40,7 @@ class UpcomingViewController: UIViewController {
     
     private func fetchUpcoming() {
         APICaller.shared.getData(url: URL(string: upcomingMoviesURL) , completion: { [weak self] result in
+            
             switch result {
             case .success(let titles):
                 self?.titles = titles
@@ -55,10 +56,10 @@ class UpcomingViewController: UIViewController {
 }
 
 extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
     }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -70,7 +71,6 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: TitleViewModel(titleName: (title.originalTitle ?? title.originalLanguage) ?? "Unknown title name", posterURL: title.posterPath ?? ""))
         return cell
     }
-
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140

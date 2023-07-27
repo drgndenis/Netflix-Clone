@@ -14,7 +14,9 @@ enum APIError: Error {
 class APICaller {
     static let shared = APICaller()
 
-    func getData(url: URL?, completion: @escaping (Result<[Title], Error>) -> Void) {
+    func getData(with query: String? = "", url: URL?, completion: @escaping (Result<[Title], Error>) -> Void) {
+        
+        guard let query = query?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         guard let url = url else {return}
 
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in

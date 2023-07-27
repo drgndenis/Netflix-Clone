@@ -20,6 +20,14 @@ class SearchViewController: UIViewController {
         return table
     }()
 
+    private let searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: SearchResultsViewController())
+        controller.searchBar.placeholder = "Search for a movie or Tv show"
+        controller.searchBar.searchBarStyle = .minimal
+        controller.searchBar.tintColor = .white
+        return controller
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +41,10 @@ class SearchViewController: UIViewController {
         discoverTable.dataSource = self
         discoverTable.delegate = self
         
+        navigationItem.searchController = searchController
+        
         fetchDiscoverMovies()
+        searchController.searchResultsUpdater = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,4 +86,30 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        
+        guard let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultsController = searchController.searchResultsController as? SearchResultsViewController else { return }
+        APICaller.shared.getData(with: query, url: URL(string: "\(Constants.baseURL)/3/search/movie?query=\(query)&api_key=\(Constants.API_KEY)")) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let titles):
+                    resultsController.titles = titles
+                    resultsController.searchResultCollectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+              
+    }
+    
+    
 }

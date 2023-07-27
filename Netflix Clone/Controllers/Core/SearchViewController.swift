@@ -88,6 +88,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+//MARK: Arama yapilirken gerekli verilerin getirilmesi
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -95,10 +96,13 @@ extension SearchViewController: UISearchResultsUpdating {
         
         guard let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty,
-              query.trimmingCharacters(in: .whitespaces).count >= 3,
+              query.trimmingCharacters(in: .whitespaces).count >= 3, // 3 kelime veya daha fazla yazildiğinde ilgili sonucların cikmasi
+              
               let resultsController = searchController.searchResultsController as? SearchResultsViewController else { return }
+        
         APICaller.shared.getData(with: query, url: URL(string: "\(Constants.baseURL)/3/search/movie?query=\(query)&api_key=\(Constants.API_KEY)")) { result in
             DispatchQueue.main.async {
+                
                 switch result {
                 case .success(let titles):
                     resultsController.titles = titles
@@ -110,6 +114,4 @@ extension SearchViewController: UISearchResultsUpdating {
         }
               
     }
-    
-    
 }

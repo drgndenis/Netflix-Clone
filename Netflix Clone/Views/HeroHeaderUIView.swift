@@ -30,6 +30,14 @@ class HeroHeaderUIView: UIView {
         return button
     }()
     
+    private let heroImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "heroImage")
+        return imageView
+    }()
+    
     // Buttons constraits
     private func applyConstraints() {
         let playButtonConstraints = [
@@ -48,15 +56,6 @@ class HeroHeaderUIView: UIView {
         NSLayoutConstraint.activate(downloadButtonConstraints)
     }
     
-    private let heroImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "heroImage")
-        return imageView
-    }()
-    
     private func addGradiant() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -65,6 +64,15 @@ class HeroHeaderUIView: UIView {
         ]
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
+    }
+    
+    // Header random yapabilmek icin gerekli func
+    public func configure(with model: TitleViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.posterURL)") else {
+            return
+        }
+        
+        heroImageView.sd_setImage(with: url)
     }
     
     override init(frame: CGRect) {

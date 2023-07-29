@@ -17,6 +17,10 @@ enum Sections: Int {
 
 class HomeViewController: UIViewController {
     
+    // Header degisimi icin gerekenli variables
+    private var randomTrendingMovie: Title?
+    private var headerView: HeroHeaderUIView?
+    
     // URLs
     private let trendingMoviesURL = "\(Constants.baseURL)/3/trending/movie/day?api_key=\(Constants.API_KEY)"
     private let trendingTvURL = "\(Constants.baseURL)/3/trending/tv/day?api_key=\(Constants.API_KEY)"
@@ -43,14 +47,29 @@ class HomeViewController: UIViewController {
         
         configureNavbar()
         // tableHeaderView'a gorunum olusturma
-        let heroView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
-        homeFeedTable.tableHeaderView = heroView
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
+        homeFeedTable.tableHeaderView = headerView
+        configureHeroHeaderView()
     }
     
     // Cerceve verme
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds // Ekranı komple kaplamasi
+    }
+    
+    private func configureHeroHeaderView() {
+        APICaller.shared.getData(url: URL(string: trendingMoviesURL)) { [weak self] result in
+            switch result {
+            case .success(let titles):
+                let selectedTitle = titles.randomElement()
+                self?.randomTrendingMovie = selectedTitle
+                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.originalTitle ?? "", posterURL: selectedTitle?.posterPath ?? ""))
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func fetchAndPrintData(url: URL?, cell: CollectionViewTableViewCell) {

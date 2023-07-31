@@ -14,6 +14,7 @@ enum APIError: Error {
 class APICaller {
     static let shared = APICaller()
 
+    // genel API cekme fonksiyonu
     func getData(with query: String? = "", url: URL?, completion: @escaping (Result<[Title], Error>) -> Void) {
         
         guard let query = query?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }

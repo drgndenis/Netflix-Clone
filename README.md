@@ -27,7 +27,7 @@ iOS 13.0 or later
     <string>YOUR_YOUTUBE_API_KEY</string>
 ```
 
-7. Open Xcode, open NetflixClone.xcworkspace, and run the app on a simulator or a real device.
+6. Open Xcode, open NetflixClone.xcworkspace, and run the app on a simulator or a real device.
 
 ## Used Libraries
 SDWebImage - Used for image downloading and caching.

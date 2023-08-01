@@ -24,6 +24,7 @@ This project is a "Netflix Clone" mobile application developed with Swift and UI
 
 ## Requirements
 iOS 13.0 or later
+<br>
 Xcode 14.0 or later
 
 ## Used Libraries

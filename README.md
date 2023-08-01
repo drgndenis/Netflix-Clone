@@ -3,11 +3,24 @@ This project is a "Netflix Clone" mobile application developed with Swift and UI
 
 ## Features
 
-Discover popular movies and TV shows
-Detailed information pages for movies and TV shows
-Watch trailers of movies and TV shows
-Save and view favorite movies and TV shows
-Search functionality to find content
+1. Discover popular movies and TV shows
+2. Detailed information pages for movies and TV shows
+3. Watch trailers of movies and TV shows
+4. Download and view favorite movies and TV shows
+6. See upcoming movies and TV shows
+7. Search functionality to find content
+
+## Screenshots
+
+<img width="250" alt="homePage" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/c33ff3e0-810e-41a9-9908-90ec5d553327">
+<img width="250" alt="homePage2" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/1fa331e8-e34d-4e06-b3e4-e6aacd05f7f2">
+<img width="250" alt="upcoming" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/81f87b18-b924-42e6-b573-bd47d87a4639">
+<img width="250" alt="search" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/3aad42b7-eef0-4739-867c-58422617e7d9">
+<img width="250" alt="searching" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/6f5972d3-9f39-49cd-bc2d-a48f736751f3">
+<img width="250" alt="download" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/23387063-5fdd-48f8-b79c-6fc9617e0a61">
+<img width="250" alt="downloads" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/8bc37900-dff4-4492-9de8-6d603bdbfd2f">
+<img width="250" alt="YoutubeApiInDownloads" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/c5041f87-27c7-49aa-9888-5964d9e74f2f">
+<img width="250" alt="YoutubeApiInSearch" src="https://github.com/drgndenis/Netflix-Clone/assets/101059619/6e32b5a1-944e-48b5-86d7-208faa56c156">
 
 ## Requirements
 iOS 13.0 or later
@@ -27,7 +40,7 @@ iOS 13.0 or later
     <string>YOUR_YOUTUBE_API_KEY</string>
 ```
 
-7. Open Xcode, open NetflixClone.xcworkspace, and run the app on a simulator or a real device.
+1. Open Xcode, open NetflixClone.xcworkspace, and run the app on a simulator or a real device.
 
 ## Used Libraries
 SDWebImage - Used for image downloading and caching.

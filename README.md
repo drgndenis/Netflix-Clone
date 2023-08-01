@@ -24,6 +24,14 @@ This project is a "Netflix Clone" mobile application developed with Swift and UI
 
 ## Requirements
 iOS 13.0 or later
+Xcode 14.0 or later
+
+## Used Libraries
+SDWebImage - Used for image downloading and caching.
+
+## Data Persistence
+CoreData - Used for local data storage and management.
+
 
 ## Installation
 
@@ -31,16 +39,15 @@ iOS 13.0 or later
 2. Install the required dependencies by running pod install in the project directory via the terminal.
 3. Go to The Movie Database (TMDb) API, create an account, and obtain your API key.
 4. Go to the YouTube API and create a project to get your YouTube API key.
-5. Create a file named Keys.plist in the project's root directory and add your API keys as follows:
+5. Open the Contents.swift file inside the Services folder and replace the empty strings with your actual API keys:
 
-```html 
-    <key>TMDB_API_KEY</key>
-    <string>YOUR_TMDB_API_KEY</string>
-    <key>YOUTUBE_API_KEY</key>
-    <string>YOUR_YOUTUBE_API_KEY</string>
+```swift 
+    struct Constants {
+    static let API_KEY = "YOUR_TMDB_API_KEY"
+    static let baseURL = "https://api.themoviedb.org"
+    static let youtubeAPI_KEY = "YOUR_YOUTUBE_API_KEY"
+    static let youtubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
+    }
 ```
 
 1. Open Xcode, open NetflixClone.xcworkspace, and run the app on a simulator or a real device.
-
-## Used Libraries
-SDWebImage - Used for image downloading and caching.
